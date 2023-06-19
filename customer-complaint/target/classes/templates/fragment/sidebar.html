@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="side" class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <img alt="logo" src="../assets/images/logo.svg"> </a>
+            <a class="navbar-brand brand-logo-mini" href="index.html">
+                <img alt="logo" src="../assets/images/logo-mini.svg"> </a>
+        </div>
+
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+            <ul class="navbar-nav">
+                <li class="nav-item font-weight-semibold d-none d-lg-block" th:text="${main}">Help : +050 2992 709</li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+
+                </li>
+                <li class="nav-item dropdown">
+
+                </li>
+                <!--                删掉无用功能-->
+                <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
+                    <a class="nav-link" th:href="@{/customerService/index(current=1,size=10)}">
+                        <span ></span>
+                    </a>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <sidebar class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item nav-category">Main Menu</li>
+
+                <!--    首页侧边栏            -->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/customer/index(current=1,size=10)}">
+                        <i class="menu-icon typcn typcn-document-text"></i>
+                        <span class="menu-title">首页</span>
+                    </a>
+                </li>
+
+                <!--    客户模块            -->
+                <li class="nav-item" th:if="${session.master == 'false'}">
+                    <a class="nav-link" aria-expanded="false" aria-controls="ui-basic" href="#ui-basic" data-toggle="collapse">
+                        <i class="menu-icon typcn typcn-coffee"></i>
+                        <span class="menu-title">客户管理主页</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/complaint/add}">填写投诉</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/complaint/view(current=1,size=10)}">查看投诉进度</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!--  客服模块，负责处理投诉              -->
+                <li class="nav-item" th:if="${session.master == 'true'}">
+                    <a class="nav-link" aria-expanded="false" aria-controls="customer" href="#customer" data-toggle="collapse">
+                        <i class="menu-icon typcn typcn-document-add"></i>
+                        <span class="menu-title">客服管理主页</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="customer" >
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/complaint/message(current=1,size=10)}"> 处理投诉信息 </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+                <!--设置，主要包括个人信息，以及退出-->
+                <li class="nav-item">
+                    <a class="nav-link" aria-expanded="false" aria-controls="setting" href="#setting" data-toggle="collapse">
+                        <i class="menu-icon typcn typcn-document-add"></i>
+                        <span class="menu-title">设置</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="setting">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/exit}"> 退出登录 </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
