@@ -14,6 +14,12 @@
 
 
 
+# 分支说明
+
+- `general`：       使用 springboot 实现， 没有利用 webservice 技术 
+
+- `webservice`： 使用 springboot + CXF 实现， 利用 webservice 技术
+
 
 
 # 参考资料
